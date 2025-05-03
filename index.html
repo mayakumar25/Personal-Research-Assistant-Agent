@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PERSONAL RESEARCH ASSISTANT AGENT</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>PERSONAL RESEARCH ASSISTANT AGENT</h1>
+    <form method="POST">
+      <input type="text" name="query" placeholder="Enter your research topic" required>
+      <button type="submit">Search</button>
+    </form>
+
+    {% if results %}
+      <h2>Results</h2>
+      {% for paper in results %}
+        <div class="paper">
+          <h3><a href="{{ paper.url }}" target="_blank">{{ paper.title }}</a></h3>
+          <p><strong>Authors:</strong> {{ paper.authors }}</p>
+          <p><strong>Year:</strong> {{ paper.year }}</p>
+          <p><strong>Summary:</strong> {{ paper.summary }}</p>
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+</body>
+</html>
